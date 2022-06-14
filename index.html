@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        [[message]]
+        <hr>
+        <a v-bind:href="next" >v-bind 完整为v-bind:href:'next'  或者简写:href:'next'</a>
+        <hr>
+        <!-- v-if 与 v-else 要紧贴着使用，才能起作用 -->
+        <a href="#" v-if="level==1">皇帝</a>
+        <a href="#" v-else-if="level==2">将军</a>
+        <a href="#" v-else>平民</a>
+        <hr>
+        <a href="#" v-if="isLogin">个人中心</a>
+        <a href="#" v-else="isLogin">请登录</a>
+        <hr>
+        <a href="#" v-if="seen">if </a>
+        <!-- v-show 标签会一直存在 v-if 为true时，标签元素才存在 -->
+        <a href="#" v-show="seen">show</a>
+        <!-- 使用v-for 来遍历循环 -->
+        <ul>
+            <!-- (值，索引) in 列表名 -->
+            <li v-for="(shop, index) in shops">第[[index+1]]家店：[[shop]]</li>
+        </ul>
+        <hr>
+        <p>遍历对象</p>
+        <ul>
+            <!-- (值，key) in 对象名(字典名) -->
+            <li v-for="(value, key) in object">[[key]]:[[value]]</li>
+        </ul>
+        <hr>
+        <h3>methods函数应用</h3>
+        <button v-on:click="login('lilei')">登录</button>
+        <button @click="counts+=1">Add 1</button>
+        <span>this is result [[counts]]</span>
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        // delimiters 分隔符 [开始分隔符，结束分隔符]
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            message: 'hello',
+            next: 'https://www.baidu.com',
+            level: 1,
+            isLogin: true,
+            seen: false,
+            shops: ['北京', '南京', '上海'],
+            object: {
+                name:'wangyi',
+                brith: '2011-01-01'
+            },            
+            counts: 0,
+        },
+        methods: {
+          login: function(message){
+            alert(message)
+          },
+          
+
+        },
+    })
+</script>
+</html>

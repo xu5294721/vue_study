@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue_todoslist</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="item">
+        <button v-on:click="add_todo" >添加</button>
+        <hr>        
+        <ul>
+            <li v-for="todo in todos">{{todo}}</li>
+            <!-- <button v-for="todo in todos">删除</botton> -->
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data:{
+            counts: 0,
+            todos:[],
+            item: '',
+        },
+        methods: {
+            add_todo:function(){
+                // alert(this.item)
+                // 添加至todoslist中
+                this.todos.push(this.item)
+                // 将item text文本框清除
+                this.item = ''
+                
+            },
+        },
+    })
+
+    // ****************ES6语法********************
+    // ES6 箭头函数  =>
+    // 定义函数
+    var say = (参数1,参数2) => {
+        alert('12')
+    }
+
+    // 调用函数
+    say()
+
+
+
+
+</script>
+</html>
